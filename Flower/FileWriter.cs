@@ -3,9 +3,9 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 
-namespace FlowLogger
+namespace Flower
 {
-    public class FileWriter : WriterBase
+    public class FileWriter : LocalWriterBase
     {
         private readonly string _path;
 

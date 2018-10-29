@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
 
-namespace FlowLogger
+namespace Flower
 {
 
     public delegate void GenericDelegate<T>(T args);

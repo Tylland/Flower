@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Flower</id>
+    <version>0.9.0</version>
+    <title>Flow Logging Framework</title>
+    <authors>Tylland</authors>
+    <owners>Tylland</owners>
+    <licenseUrl>https://github.com/Tylland/Flower/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/Tylland/Flower</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A framework built for logging flows. Helps you keep track of how your data is flowing in your application.</description>
+    <releaseNotes>Initial Beta Version</releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <tags>C# Logging Flow State</tags>
+  </metadata>
+      <files>
+        <file src="..\Flower\bin\Release\Flower.dll" target="lib\net461\Flower.dll" />
+        <file src="..\Flower\bin\Release\Flower.pdb" target="lib\net461\Flower.pdb" />
+        <file src="..\Flower\bin\Release\Flower.XML" target="lib\net461\Flower.XML" />
+    </files>
+</package>

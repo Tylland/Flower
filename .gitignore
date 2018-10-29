@@ -19,3 +19,6 @@ Version.cpp
 .vs/Flower/v15/Server/sqlite3/storage.ide
 .vs/Flower/v15/Server/sqlite3/storage.ide-shm
 .vs/Flower/v15/Server/sqlite3/storage.ide-wal
+*.nupkg
+Nuget/nuget.exe
+*.apikey

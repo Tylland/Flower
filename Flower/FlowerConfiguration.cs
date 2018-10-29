@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FlowLogger
+namespace Flower
 {
     public class FlowerConfiguration
     {
-        private readonly List<IFlowLoggerSink> _logEventSinks = new List<IFlowLoggerSink>();
+        private readonly List<IFlowerSink> _logEventSinks = new List<IFlowerSink>();
         private Action<string> _selfLogAction;
         public FlowerConfiguration()
         {
@@ -25,9 +25,9 @@ namespace FlowLogger
             return this;
         }
 
-        public IFlowLogger CreateLogger()
+        public IFlower CreateLogger()
         {
-            Flower.Logger = new FlowLogger(_logEventSinks, _selfLogAction);
+            Flower.Logger = new FlowerLogger(_logEventSinks, _selfLogAction);
 
             return Flower.Logger;
         }

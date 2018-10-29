@@ -1,21 +1,21 @@
 ﻿using System;
 
-namespace FlowLogger
+namespace Flower
 {
-    public class ConsoleWriterSink : IFlowLoggerSink
+    public class ConsoleWriterSink : IFlowerSink
     {
         private readonly ConsoleWriter _writer;
         public ConsoleWriterSink(Func<Flow, string> flowRenderFunc = null)
         {
             _writer = new ConsoleWriter(flowRenderFunc);
         }
-        public void Emit(FlowerSeedEvent evt)
+        public void Handle(FlowerSeedEvent evt)
         {
-            _writer.Start(evt.FlowId, evt.Configuration, evt.Timestamp);
+            _writer.Seed(evt.FlowId, evt.Configuration, evt.Timestamp);
         }
-        public void Emit(FlowerFeedEvent evt)
+        public void Handle(FlowerFeedEvent evt)
         {
-            _writer.Step(evt.FlowId, evt.StepName, evt.Timestamp);
+            _writer.Feed(evt.FlowId, evt.StepName, evt.Timestamp);
         }
     }
 }

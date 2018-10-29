@@ -1,17 +1,27 @@
 ﻿using System;
 using System.Linq;
 
-namespace FlowLogger
+namespace Flower
 {
-    public class WriterBase
+    /// <summary>
+    /// Base class for local writers
+    /// </summary>
+    public abstract class LocalWriterBase
     {
         private const int HeaderWidth = 15;
         private const int ProgressBarWidth = 50;
 
         private readonly FlowStateManager _manager = new FlowStateManager();
+        /// <summary>
+        /// 
+        /// </summary>
         protected readonly Func<Flow, string> FlowRenderFunc;
 
-        public WriterBase(Func<Flow, string> flowRenderFunc)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="flowRenderFunc"></param>
+        protected LocalWriterBase(Func<Flow, string> flowRenderFunc)
         {
             FlowRenderFunc = flowRenderFunc ?? CreateFlowString;
 
@@ -22,6 +32,9 @@ namespace FlowLogger
             _manager.FlowFinished += OnFlowFinished;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected FlowStateManager Manager => _manager;
         protected virtual void OnFlowStarted(FlowStarted args) { }
         protected virtual void OnFlowFinished(FlowFinished args) { }
@@ -29,6 +42,11 @@ namespace FlowLogger
         protected virtual void OnFlowCompleted(FlowCompleted args) { }
         protected virtual void OnFlowStepReached(FlowStepReached args) { }
 
+        /// <summary>
+        /// Creates a string that visualizes the state of a flow
+        /// </summary>
+        /// <param name="flow"></param>
+        /// <returns></returns>
         protected string CreateFlowString(Flow flow)
         {
             var header = (flow.FlowId + ":").PadLeft(HeaderWidth, ' ');
@@ -42,12 +60,24 @@ namespace FlowLogger
             return $"{header}{progressSteps}";
         }
 
-        public void Start(string flowId, FlowConfiguration configuration, DateTime timestamp)
+        /// <summary>
+        /// Initializes a new flow
+        /// </summary>
+        /// <param name="flowId"></param>
+        /// <param name="configuration"></param>
+        /// <param name="timestamp"></param>
+        public void Seed(string flowId, FlowConfiguration configuration, DateTime timestamp)
         {
             _manager.Start(new Flow(flowId, configuration, timestamp), timestamp);
         }
-
-        public void Step(string flowId, string stepName, DateTime timestamp)
+        
+        /// <summary>
+        /// Updates the state of a flow
+        /// </summary>
+        /// <param name="flowId"></param>
+        /// <param name="stepName"></param>
+        /// <param name="timestamp"></param>
+        public void Feed(string flowId, string stepName, DateTime timestamp)
         {
             _manager.Step(flowId, stepName, timestamp);
         }

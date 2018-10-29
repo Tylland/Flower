@@ -1,7 +1,7 @@
-﻿namespace FlowLogger
+﻿namespace Flower
 {
     public static class Flower
     {
-        public static IFlowLogger Logger { get; set; }
+        public static IFlower Logger { get; set; }
     }
 }

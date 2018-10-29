@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading;
 
-namespace FlowLogger
+namespace Flower
 {
-    public class ConsoleWriter :  WriterBase
+    public class ConsoleWriter :  LocalWriterBase
     {
         private readonly List<string> _activeFlows = new List<string>();
         private readonly Timer _timer;

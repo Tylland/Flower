@@ -1,13 +1,13 @@
 ﻿using System;
 
-namespace FlowLogger
+namespace Flower
 {
     public class FlowerSinkConfiguration
     {
         readonly FlowerConfiguration _loggerConfiguration;
-        readonly Action<IFlowLoggerSink> _addSink;
+        readonly Action<IFlowerSink> _addSink;
 
-        internal FlowerSinkConfiguration(FlowerConfiguration loggerConfiguration, Action<IFlowLoggerSink> addSink)
+        internal FlowerSinkConfiguration(FlowerConfiguration loggerConfiguration, Action<IFlowerSink> addSink)
         {
             _loggerConfiguration = loggerConfiguration;
             _addSink = addSink;
@@ -41,7 +41,7 @@ namespace FlowLogger
             return _loggerConfiguration;
         }
 
-        public FlowerConfiguration Sink(IFlowLoggerSink sink)
+        public FlowerConfiguration Sink(IFlowerSink sink)
         {
             _addSink(sink);
 

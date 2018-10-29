@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FlowLogger
+namespace Flower
 {
     public class FlowConfiguration
     {

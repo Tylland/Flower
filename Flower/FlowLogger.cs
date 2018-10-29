@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FlowLogger
+namespace Flower
 {
-    public class FlowLogger : IFlowLogger
+    public class FlowerLogger : IFlower
     {
-        private readonly IEnumerable<IFlowLoggerSink> _sinks;
+        private readonly IEnumerable<IFlowerSink> _sinks;
         private readonly Action<string> _selfLogAction;
-        public FlowLogger(IEnumerable<IFlowLoggerSink> sinks, Action<string> selfLogAction)
+        public FlowerLogger(IEnumerable<IFlowerSink> sinks, Action<string> selfLogAction)
         {
             _sinks = sinks;
             _selfLogAction = selfLogAction;
 
-            _selfLogAction?.Invoke("FlowLogger created!");
+            _selfLogAction?.Invoke("FlowerLogger created!");
         }
         public void Seed(string flowId, FlowConfiguration configuration)
         {
@@ -22,7 +22,7 @@ namespace FlowLogger
             {
                 try
                 {
-                    sink.Emit(new FlowerSeedEvent(flowId, configuration, timestamp));
+                    sink.Handle(new FlowerSeedEvent(flowId, configuration, timestamp));
                 }
                 catch (Exception e)
                 {
@@ -38,7 +38,7 @@ namespace FlowLogger
             {
                 try
                 {
-                    sink.Emit(new FlowerFeedEvent(flowId, stepName, timestamp));
+                    sink.Handle(new FlowerFeedEvent(flowId, stepName, timestamp));
                 }
                 catch (Exception e)
                 {
