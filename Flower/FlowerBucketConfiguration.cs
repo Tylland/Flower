@@ -2,22 +2,22 @@
 
 namespace Flower
 {
-    public class FlowerSinkConfiguration
+    public class FlowerBucketConfiguration
     {
         readonly FlowerConfiguration _loggerConfiguration;
-        readonly Action<IFlowerSink> _addSink;
+        readonly Action<IFlowerBucket> _addBucket;
 
-        internal FlowerSinkConfiguration(FlowerConfiguration loggerConfiguration, Action<IFlowerSink> addSink)
+        internal FlowerBucketConfiguration(FlowerConfiguration loggerConfiguration, Action<IFlowerBucket> addBucket)
         {
             _loggerConfiguration = loggerConfiguration;
-            _addSink = addSink;
+            _addBucket = addBucket;
         }
 
         public FlowerConfiguration Console()
         {
             try
             {
-                return Sink(new ConsoleWriterSink());
+                return Bucket(new ConsoleWriterBucket());
             }
             catch (Exception ex)
             {
@@ -31,7 +31,7 @@ namespace Flower
         {
             try
             {
-                return Sink(new FileWriterSink(path));
+                return Bucket(new FileWriterBucket(path));
             }
             catch (Exception ex)
             {
@@ -41,9 +41,9 @@ namespace Flower
             return _loggerConfiguration;
         }
 
-        public FlowerConfiguration Sink(IFlowerSink sink)
+        public FlowerConfiguration Bucket(IFlowerBucket bucket)
         {
-            _addSink(sink);
+            _addBucket(bucket);
 
             return _loggerConfiguration;
         }

@@ -35,20 +35,20 @@
   <ItemGroup>
     <Compile Include="FileWriter.cs" />
     <Compile Include="ConsoleWriter.cs" />
-    <Compile Include="FileWriterSink.cs" />
-    <Compile Include="ConsoleWriterSink.cs" />
+    <Compile Include="FileWriterBucket.cs" />
+    <Compile Include="ConsoleWriterBucket.cs" />
     <Compile Include="Flow.cs" />
     <Compile Include="FlowConfiguration.cs" />
     <Compile Include="Flower.cs" />
-    <Compile Include="FlowerFeedEvent.cs" />
-    <Compile Include="FlowerSeedEvent.cs" />
+    <Compile Include="FlowerFeedMessage.cs" />
+    <Compile Include="FlowerSeedMessage.cs" />
     <Compile Include="FlowStep.cs" />
     <Compile Include="FlowLogger.cs" />
     <Compile Include="FlowerConfiguration.cs" />
-    <Compile Include="FlowerSinkConfiguration.cs" />
+    <Compile Include="FlowerBucketConfiguration.cs" />
     <Compile Include="FlowStateManager.cs" />
     <Compile Include="IFlower.cs" />
-    <Compile Include="IFlowerSink.cs" />
+    <Compile Include="IFlowerBucket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WriterBase.cs" />
   </ItemGroup>

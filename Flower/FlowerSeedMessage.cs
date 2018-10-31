@@ -2,7 +2,7 @@
 
 namespace Flower
 {
-    public class FlowerSeedEvent
+    public class FlowerSeedMessage
     {
         public string FlowId { get; set; }
 
@@ -10,7 +10,7 @@ namespace Flower
 
         public DateTime Timestamp { get; set; }
 
-        public FlowerSeedEvent(string flowId, FlowConfiguration configuration, DateTime timestamp)
+        public FlowerSeedMessage(string flowId, FlowConfiguration configuration, DateTime timestamp)
         {
             FlowId = flowId;
             Configuration = configuration;

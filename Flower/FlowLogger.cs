@@ -5,11 +5,11 @@ namespace Flower
 {
     public class FlowerLogger : IFlower
     {
-        private readonly IEnumerable<IFlowerSink> _sinks;
+        private readonly IEnumerable<IFlowerBucket> _buckets;
         private readonly Action<string> _selfLogAction;
-        public FlowerLogger(IEnumerable<IFlowerSink> sinks, Action<string> selfLogAction)
+        public FlowerLogger(IEnumerable<IFlowerBucket> buckets, Action<string> selfLogAction)
         {
-            _sinks = sinks;
+            _buckets = buckets;
             _selfLogAction = selfLogAction;
 
             _selfLogAction?.Invoke("FlowerLogger created!");
@@ -18,11 +18,11 @@ namespace Flower
         {
             var timestamp = DateTime.Now;
 
-            foreach (var sink in _sinks)
+            foreach (var bucket in _buckets)
             {
                 try
                 {
-                    sink.Handle(new FlowerSeedEvent(flowId, configuration, timestamp));
+                    bucket.Handle(new FlowerSeedMessage(flowId, configuration, timestamp));
                 }
                 catch (Exception e)
                 {
@@ -34,11 +34,11 @@ namespace Flower
         {
             var timestamp = DateTime.Now;
 
-            foreach (var sink in _sinks)
+            foreach (var bucket in _buckets)
             {
                 try
                 {
-                    sink.Handle(new FlowerFeedEvent(flowId, stepName, timestamp));
+                    bucket.Handle(new FlowerFeedMessage(flowId, stepName, timestamp));
                 }
                 catch (Exception e)
                 {

@@ -5,13 +5,13 @@ namespace Flower
 {
     public class FlowerConfiguration
     {
-        private readonly List<IFlowerSink> _logEventSinks = new List<IFlowerSink>();
+        private readonly List<IFlowerBucket> _buckets = new List<IFlowerBucket>();
         private Action<string> _selfLogAction;
         public FlowerConfiguration()
         {
-            WriteTo = new FlowerSinkConfiguration(this, s => _logEventSinks.Add(s));
+            WriteTo = new FlowerBucketConfiguration(this, s => _buckets.Add(s));
         }
-        public FlowerSinkConfiguration WriteTo { get; internal set; }
+        public FlowerBucketConfiguration WriteTo { get; internal set; }
 
         internal void SelfLogMessage(string msg)
         {
@@ -25,9 +25,9 @@ namespace Flower
             return this;
         }
 
-        public IFlower CreateLogger()
+        public IFlower CreateFlower()
         {
-            Flower.Logger = new FlowerLogger(_logEventSinks, _selfLogAction);
+            Flower.Logger = new FlowerLogger(_buckets, _selfLogAction);
 
             return Flower.Logger;
         }

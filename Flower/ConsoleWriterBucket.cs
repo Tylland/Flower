@@ -2,18 +2,18 @@
 
 namespace Flower
 {
-    public class ConsoleWriterSink : IFlowerSink
+    public class ConsoleWriterBucket : IFlowerBucket
     {
         private readonly ConsoleWriter _writer;
-        public ConsoleWriterSink(Func<Flow, string> flowRenderFunc = null)
+        public ConsoleWriterBucket(Func<Flow, string> flowRenderFunc = null)
         {
             _writer = new ConsoleWriter(flowRenderFunc);
         }
-        public void Handle(FlowerSeedEvent evt)
+        public void Handle(FlowerSeedMessage evt)
         {
             _writer.Seed(evt.FlowId, evt.Configuration, evt.Timestamp);
         }
-        public void Handle(FlowerFeedEvent evt)
+        public void Handle(FlowerFeedMessage evt)
         {
             _writer.Feed(evt.FlowId, evt.StepName, evt.Timestamp);
         }
